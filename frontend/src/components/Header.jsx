@@ -30,7 +30,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="w-screen md:mt-16 mt-8 md:mb-8">
+    <nav className="w-screen md:mt-10 mt-2 md:mb-2 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md py-6">
       <div className="max-w-2xl mx-auto flex justify-center md:justify-between">
         <div className="hidden md:block w-9 h-19 rounded-full cursor-pointer overflow-hidden border-2 border-slate-900 dark:border-slate-400 hover:shadow-md shadow-md hover:shadow-sky-500">
           <img
@@ -69,16 +69,6 @@ export default function Header() {
             }`}
           >
             Articles
-          </Link>
-          <Link
-            to="/"
-            className={`font-semibold text-sm  ${
-              location.pathname === "/now"
-                ? "text-sky-500 dark:text-sky-400"
-                : "hover:text-sky-500 dark:hover:text-sky-400"
-            }`}
-          >
-            Now
           </Link>
           <span>|</span>
           <HiOutlineLightBulb

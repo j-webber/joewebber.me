@@ -10,10 +10,10 @@ export default function AboutMe() {
         Hey there, I'm Joe Webber.
       </h1>
       <p className="mt-8">
-        I am a recovering sales addict now hooked on web development.
+        I'm a recovering sales addict now hooked on web development.
       </p>
       <p className="mt-5">
-        I'm currently a sales rep at{" "}
+        I currently work as a sales rep at{" "}
         <span>
           <a
             href="https://egencia.com"
