@@ -2,7 +2,7 @@ import { AiOutlineTwitter, AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 
 export default function Footer() {
   return (
-    <div className="mx-auto flex flex-col items-center border-t border-slate-200 dark:border-slate-700 pb-8">
+    <div className="mx-auto flex flex-col items-center border-t border-slate-200 dark:border-slate-700 pb-8 absolute bottom-0 w-full">
       <div className="pt-8 pb-4 md:pt-12 md:pb-6 flex justify-center space-x-6">
         <a
           href="https://twitter.com/joewebber_"

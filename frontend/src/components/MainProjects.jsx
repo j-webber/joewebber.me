@@ -9,6 +9,18 @@ export default function MainProjects() {
       <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-200">
         Things I'm currently building:
       </h2>
+      <p className="mt-5">
+        Ever since reading The 4-Hour Work Week in 2017, I’ve been fascinated
+        with building a business. Thus, have built many - a couple made money,
+        most did not. You can find a full list{" "}
+        <Link
+          to="/projects"
+          className="font-semibold hover:text-sky-500 hover:cursor-pointer dark:hover:text-sky-400"
+        >
+          here
+        </Link>
+        .
+      </p>
       <div className="columns-1 md:columns-2 gap-4 mt-5">
         <a
           href="https://watchnowai.com"

@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 import { HiLightBulb, HiOutlineLightBulb } from "react-icons/hi";
-import { BsGithub } from "react-icons/bs";
+import { AiFillGithub } from "react-icons/ai";
 import logo from "../assets/headshot.png";
 
 export default function Header() {
@@ -51,7 +50,7 @@ export default function Header() {
             Home
           </Link>
           <Link
-            to="/"
+            to="/projects"
             className={`font-semibold text-sm  ${
               location.pathname === "/projects"
                 ? "text-sky-500 dark:text-sky-400"
@@ -80,7 +79,7 @@ export default function Header() {
             className="w-5 h-5 text-sky-500 hover:text-slate-400 hover:cursor-pointer dark:hidden block"
           />
           <a href="https://github.com/j-webber/joewebber.me" target="_blank">
-            <BsGithub className="w-4 h-4 hover:text-sky-500 hover:cursor-pointer dark:hover:text-sky-400" />
+            <AiFillGithub className="w-5 h-5 hover:text-sky-500 hover:cursor-pointer dark:hover:text-sky-400" />
           </a>
         </div>
       </div>
