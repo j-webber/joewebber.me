@@ -13,6 +13,7 @@ import ProjectsScreen from "./screens/ProjectsScreen.jsx";
 import ContactScreen from "./screens/ContactScreen.jsx";
 import analytics from "./analytics.js";
 import { AnalyticsProvider } from "use-analytics";
+import NotFoundScreen from "./screens/NotFoundScreen.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/projects" element={<ProjectsScreen />} />
       <Route path="/contact" element={<ContactScreen />} />
+      <Route path="*" element={<NotFoundScreen />} />
     </Route>
   )
 );
