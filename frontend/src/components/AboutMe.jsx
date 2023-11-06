@@ -1,6 +1,5 @@
 import { FaCcAmex } from "react-icons/fa";
-import { BiCameraMovie } from "react-icons/bi";
-import logo from "../assets/WNA-logo.png";
+import logo from "../assets/WNA-Logo.png";
 import logoLight from "../assets/WNA-logo-secondary.png";
 
 export default function AboutMe() {
