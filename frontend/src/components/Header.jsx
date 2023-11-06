@@ -59,7 +59,7 @@ export default function Header() {
           >
             Projects
           </Link>
-          <Link
+          {/* <Link
             to="/"
             className={`font-semibold text-sm  ${
               location.pathname === "/articles"
@@ -68,6 +68,16 @@ export default function Header() {
             }`}
           >
             Articles
+          </Link> */}
+          <Link
+            to="/contact"
+            className={`font-semibold text-sm  ${
+              location.pathname === "/contact"
+                ? "text-sky-500 dark:text-sky-400"
+                : "hover:text-sky-500 dark:hover:text-sky-400"
+            }`}
+          >
+            Contact
           </Link>
           <span>|</span>
           <HiOutlineLightBulb

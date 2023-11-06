@@ -9,7 +9,7 @@ export default function HomeScreen() {
       <AboutMe />
       <Pictures />
       <MainProjects />
-      <RecentArticles />
+      {/* <RecentArticles /> */}
     </>
   );
 }

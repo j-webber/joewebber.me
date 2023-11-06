@@ -10,12 +10,14 @@ import {
 import "./index.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import ProjectsScreen from "./screens/ProjectsScreen.jsx";
+import ContactScreen from "./screens/ContactScreen.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomeScreen />} />
       <Route path="/projects" element={<ProjectsScreen />} />
+      <Route path="/contact" element={<ContactScreen />} />
     </Route>
   )
 );
