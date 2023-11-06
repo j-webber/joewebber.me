@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../assets/WNA-logo.png";
+import logo from "../assets/WNA-Logo.png";
 import logoLight from "../assets/WNA-logo-secondary.png";
 import { HiArrowNarrowRight } from "react-icons/hi";
 
