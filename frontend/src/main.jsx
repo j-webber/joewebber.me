@@ -11,6 +11,8 @@ import "./index.css";
 import HomeScreen from "./screens/HomeScreen.jsx";
 import ProjectsScreen from "./screens/ProjectsScreen.jsx";
 import ContactScreen from "./screens/ContactScreen.jsx";
+import analytics from "./analytics.js";
+import { AnalyticsProvider } from "use-analytics";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +26,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AnalyticsProvider instance={analytics}>
+      <RouterProvider router={router} />
+    </AnalyticsProvider>
   </React.StrictMode>
 );
