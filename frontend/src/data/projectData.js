@@ -8,6 +8,15 @@ const projects = [
   //     date: "",
   //   },
   {
+    name: "AdSweep for X",
+    hasUrl: true,
+    url: "https://joewebber.gumroad.com/l/ofagu",
+    description:
+      'A chrome extension that replaces all ads on X with a random GIF. Let\'s face it, we all deserve a scroll session that sparks joy, laughter, and maybe a "what did I just watch" moment or two.',
+    active: true,
+    date: "Nov 2023",
+  },
+  {
     name: "Personal Website/Portfolio",
     hasUrl: true,
     url: "https://joewebber.me",
