@@ -32,7 +32,7 @@ export default function Header() {
     <nav className="w-screen md:mt-10 mt-2 md:mb-2 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md py-6">
       <div className="max-w-2xl mx-auto flex justify-center md:justify-between">
         <Link to="/">
-          <div className="hidden md:block w-9 h-19 rounded-full cursor-pointer overflow-hidden border-2 border-slate-900 dark:border-slate-400 hover:shadow-md shadow-md hover:shadow-sky-500">
+          <div className="hidden md:block w-9 h-9 rounded-full cursor-pointer overflow-hidden border-2 border-slate-900 dark:border-slate-400 hover:shadow-md shadow-md hover:shadow-sky-500">
             <img
               src={logo}
               className="max-w-full h-auto block"
