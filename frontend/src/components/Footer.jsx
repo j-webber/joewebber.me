@@ -1,6 +1,7 @@
 import { AiOutlineTwitter, AiFillLinkedin, AiFillGithub } from "react-icons/ai";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
   return (
     <div className="mx-auto flex flex-col items-center border-t border-slate-200 dark:border-slate-700 pb-8 absolute bottom-0 w-full">
       <div className="pt-8 pb-4 md:pt-12 md:pb-6 flex justify-center space-x-6">
@@ -27,7 +28,7 @@ export default function Footer() {
         </a>
       </div>
       <div className="flex flex-col items-center text-sm">
-        <p>&copy; 2023 Joe Webber.</p>
+        <p>&copy;{`${year} `}Joe Webber.</p>
         <a
           href="https://github.com/j-webber/joewebber.me"
           target="_blank"

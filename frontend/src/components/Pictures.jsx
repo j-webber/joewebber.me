@@ -1,17 +1,17 @@
-import joeLou from "../assets/joe-lou.jpeg";
-import family from "../assets/family.jpeg";
+import family from "../assets/family.jpg";
 import joePebble from "../assets/joe-pebble.jpeg";
 import lilyJoe from "../assets/lily-joe.jpeg";
 import skiing from "../assets/skiing.jpeg";
 import roo from "../assets/roo.jpeg";
 import lilyJoeBig from "../assets/lily-joe-big.jpeg";
+import joeLouWalter from "../assets/joe-lou-walter.jpg";
 
 export default function Pictures() {
   return (
     <div className="columns-2 sm:columns-3 gap-4 mt-14">
       <img
-        src={joeLou}
-        alt="Joe and Lou"
+        src={joeLouWalter}
+        alt="Joe and Lou with Walter"
         className="max-w-full h-auto inline-block rounded-md shadow mb-4"
       />
       <img

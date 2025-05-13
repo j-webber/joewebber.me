@@ -48,8 +48,8 @@ export default function AboutMe() {
             WatchNow AI
           </a>
         </span>
-        , run 🏃‍♂️ way too many miles, and spend time with my beautiful wife and
-        daughter 👨‍👩‍👧.
+        , run 🏃‍♂️ way too many miles, and spend time with my beautiful wife,
+        daughter and son 👨‍👩‍👧‍👦.
       </p>
     </div>
   );
