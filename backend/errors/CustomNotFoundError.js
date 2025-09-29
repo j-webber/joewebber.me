@@ -1,3 +1,5 @@
+// you can add more custom errors to this file
+
 class CustomNotFoundError extends Error {
   constructor(message) {
     super(message);
