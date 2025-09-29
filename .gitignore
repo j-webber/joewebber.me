@@ -131,3 +131,5 @@ dist
 
 .DS_Store
 /generated/prisma
+
+hash.js
