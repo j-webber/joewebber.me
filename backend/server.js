@@ -7,6 +7,7 @@ import passport from "passport";
 import passportConfig from "./lib/passport.js";
 import userRouter from "./routes/userRouter.js";
 import postRouter from "./routes/postRouter.js";
+import errorMiddleware from "./middleware/errorMiddleware.js";
 
 const port = process.env.PORT || 5000;
 
@@ -24,7 +25,7 @@ const sess = {
   cookie: {
     httpOnly: true,
     secure: false,
-    sameSite: "strict",
+    sameSite: "lax",
     maxAge: 30 * 24 * 60 * 60 * 1000
   },
   saveUninitialized: false,
@@ -36,11 +37,24 @@ const sess = {
   })
 };
 
+app.use(
+  cors({
+    origin:
+      process.env.NODE_ENV === "production"
+        ? "https://joewebber.me"
+        : "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
+
 // this comes from express session docs: https://expressjs.com/en/resources/middleware/session.html
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1); // trust first proxy
   sess.cookie.secure = true; // serve secure cookies
-  sess.cookie.domain = "joewebber.me"; //must set this in order for cookie to be stored in browser
+  sess.cookie.sameSite = "none"; // Required for cross-origin cookies
+  sess.cookie.domain = ".joewebber.me"; //must set this in order for cookie to be stored in browser
 }
 
 app.use(session(sess));
@@ -57,9 +71,6 @@ app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => res.send("Server is ready!"));
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.statusCode || 500).send(err.message);
-});
+app.use(errorMiddleware);
 
 app.listen(port, () => console.log(`Server running on port: ${port}`));
