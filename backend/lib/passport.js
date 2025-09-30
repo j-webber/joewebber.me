@@ -17,7 +17,11 @@ const passportConfig = (passport) => {
         const match = await bcrypt.compare(password, user.password);
         if (!match) done(null, false);
 
-        return done(null, user);
+        return done(null, {
+          id: user.id,
+          username: user.username,
+          name: user.name
+        });
       } catch (err) {
         return done(err, false);
       }
@@ -33,6 +37,11 @@ const passportConfig = (passport) => {
       const user = await prisma.user.findUnique({
         where: {
           id
+        },
+        select: {
+          id: true,
+          username: true,
+          name: true
         }
       });
       done(null, user);
