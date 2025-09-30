@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
-import prisma from "../lib/db";
-import { CustomNotFoundError } from "../errors/CustomNotFoundError";
-import { CustomBadRequestError } from "../errors/CustomBadRequestError";
+import prisma from "../lib/db.js";
+import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
+import { CustomBadRequestError } from "../errors/CustomBadRequestError.js";
 
 const getAllPosts = asyncHandler(async (req, res) => {
   const allPosts = await prisma.post.findMany();

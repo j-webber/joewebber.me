@@ -1,4 +1,4 @@
-import { CustomUnauthorizedError } from "../errors/CustomUnAuthorizedError";
+import { CustomUnauthorizedError } from "../errors/CustomUnAuthorizedError.js";
 
 const ensureAuthenticated = (req, res, next) => {
   if (!req.isAuthenticated()) {

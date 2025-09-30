@@ -10,6 +10,7 @@ import postRouter from "./routes/postRouter.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import { ensureAuthenticated } from "./middleware/authMiddleware.js";
 import adminRouter from "./routes/adminRouter.js";
+import cors from "cors";
 
 const port = process.env.PORT || 5000;
 

@@ -5,7 +5,7 @@ import {
   getAllPosts,
   getPostById,
   updatePostById
-} from "../controllers/adminController";
+} from "../controllers/adminController.js";
 
 const adminRouter = Router();
 
