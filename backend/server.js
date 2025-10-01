@@ -5,12 +5,12 @@ import connectPgSimple from "connect-pg-simple";
 import PG from "pg";
 import passport from "passport";
 import passportConfig from "./lib/passport.js";
-import userRouter from "./routes/userRouter.js";
 import postRouter from "./routes/postRouter.js";
 import errorMiddleware from "./middleware/errorMiddleware.js";
 import { ensureAuthenticated } from "./middleware/authMiddleware.js";
 import adminRouter from "./routes/adminRouter.js";
 import cors from "cors";
+import authRouter from "./routes/authRouter.js";
 
 const port = process.env.PORT || 5000;
 
@@ -71,7 +71,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/posts", postRouter);
 app.use("/api/admin", ensureAuthenticated, adminRouter);
-app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
 
 app.get("/", (req, res) => res.send("Server is ready!"));
 

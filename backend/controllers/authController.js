@@ -16,4 +16,14 @@ const logout = (req, res, next) => {
   });
 };
 
-export { login, logout };
+const getAuthStatus = (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json(req.user);
+  } else {
+    res.status(202).json({
+      success: false
+    });
+  }
+};
+
+export { login, logout, getAuthStatus };
