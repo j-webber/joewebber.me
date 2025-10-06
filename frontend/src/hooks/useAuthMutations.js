@@ -22,7 +22,7 @@ export function useLogin() {
     },
     onSuccess: (user) => {
       queryclient.setQueryData(["auth", "user"], user);
-      navigate("/");
+      navigate("/new");
     }
   });
 }

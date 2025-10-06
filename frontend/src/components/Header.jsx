@@ -1,10 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
-import { HiLightBulb, HiOutlineLightBulb } from "react-icons/hi";
+import { HiLightBulb, HiLogout, HiOutlineLightBulb } from "react-icons/hi";
 import { AiFillGithub } from "react-icons/ai";
 import logo from "../assets/headshot.png";
+import { useLogout } from "../hooks/useAuthMutations";
+import { useAuth } from "../hooks/useAuth";
+import { useAuthContext } from "../contexts/authContext";
 
 export default function Header() {
   const location = useLocation();
+  const logoutMutation = useLogout();
+  const { data: user } = useAuthContext();
 
   const toggleDarkMode = () => {
     if (localStorage.getItem("theme")) {
@@ -26,6 +31,10 @@ export default function Header() {
         localStorage.setItem("theme", "dark");
       }
     }
+  };
+
+  const handleLogout = () => {
+    logoutMutation.mutate();
   };
 
   return (
@@ -93,6 +102,12 @@ export default function Header() {
           <a href="https://github.com/j-webber/joewebber.me" target="_blank">
             <AiFillGithub className="w-5 h-5 hover:text-sky-500 hover:cursor-pointer dark:hover:text-sky-400" />
           </a>
+          {user && (
+            <HiLogout
+              onClick={handleLogout}
+              className="w-5 h-5 hover:cursor-pointer hover:text-sky-500 dark:hover:text-sky-400"
+            ></HiLogout>
+          )}
         </div>
       </div>
     </nav>
