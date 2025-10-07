@@ -90,6 +90,18 @@ export default function Header() {
           >
             Contact
           </Link>
+          {user && (
+            <Link
+              to="/new"
+              className={`font-semibold text-sm  ${
+                location.pathname === "/new"
+                  ? "text-sky-500 dark:text-sky-400"
+                  : "hover:text-sky-500 dark:hover:text-sky-400"
+              }`}
+            >
+              New
+            </Link>
+          )}
           <span>|</span>
           <HiOutlineLightBulb
             onClick={toggleDarkMode}
