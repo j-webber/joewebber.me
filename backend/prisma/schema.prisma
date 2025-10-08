@@ -19,7 +19,7 @@ model Post {
   updatedAt DateTime @updatedAt
   title     String   @db.VarChar(255)
   slug      String   @unique
-  content   String?
+  content   Json
   published Boolean  @default(false)
   author    User     @relation(fields: [authorId], references: [id])
   authorId  Int

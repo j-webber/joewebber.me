@@ -6,7 +6,7 @@ export default function LoginScreen() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData);
+
     const credentials = {
       username: formData.get("username"),
       password: formData.get("password")

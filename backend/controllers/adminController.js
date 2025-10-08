@@ -25,16 +25,17 @@ const getPostById = asyncHandler(async (req, res) => {
 });
 
 const createPost = asyncHandler(async (req, res) => {
-  const { title, content, published } = req.body;
+  const { title, slug, content, published } = req.body;
   const { id } = req.user;
 
   if (!title || !content) {
-    throw new CustomBadRequestError("Title and content are required");
+    throw new CustomBadRequestError("Title, slug and content are required");
   }
 
   const post = await prisma.post.create({
     data: {
       title,
+      slug,
       content,
       published,
       author: {
@@ -56,6 +57,7 @@ const updatePostById = asyncHandler(async (req, res) => {
   if (title !== undefined) updateData.title = title;
   if (content !== undefined) updateData.content = content;
   if (published !== undefined) updateData.published = published;
+  if (slug !== undefined) updateData.slug = slug;
 
   if (Object.keys(updateData).length === 0) {
     throw new CustomBadRequestError("No valid fields provided for update");

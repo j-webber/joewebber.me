@@ -2,6 +2,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useCallback, useState } from "react";
 import "./editor.css";
+import { useCreatePost } from "../../hooks/usePostMutations";
 
 const toolbarOptions = [
   [{ header: [1, 2, false] }],
@@ -18,6 +19,9 @@ const toolbarOptions = [
 export default function Editor() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [quill, setQuill] = useState();
+
+  const createPostMutation = useCreatePost();
 
   const wrapperRef = useCallback((wrapper) => {
     if (!wrapper) return;
@@ -25,12 +29,13 @@ export default function Editor() {
     wrapper.innerHTML = "";
     const editor = document.createElement("div");
     wrapper.append(editor);
-    new Quill(editor, {
+    const q = new Quill(editor, {
       theme: "snow",
       modules: {
         toolbar: toolbarOptions
       }
     });
+    setQuill(q);
   }, []);
 
   const createSlug = (input) => {
@@ -44,6 +49,24 @@ export default function Editor() {
 
   const handleSlugChange = (e) => {
     setSlug(createSlug(e.target.value));
+  };
+
+  const handleClick = (e) => {
+    const delta = quill.getContents();
+
+    if (!title || !slug || !delta) {
+      console.error("Title, slug and content are required");
+      return;
+    }
+
+    const postData = {
+      title,
+      slug,
+      content: delta,
+      published: e.target.id === "publish"
+    };
+
+    createPostMutation.mutate(postData);
   };
 
   return (
@@ -74,10 +97,18 @@ export default function Editor() {
       </div>
       <div id="container" ref={wrapperRef}></div>
       <div className="mt-4 flex justify-end gap-2">
-        <button className="border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-50/40 dark:bg-slate-800 dark:hover:bg-slate-800/70 rounded px-3 py-2 text-sm leading-4 dark:text-slate-300 shadow">
+        <button
+          onClick={handleClick}
+          id="draft"
+          className="border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-50/40 dark:bg-slate-800 dark:hover:bg-slate-800/70 rounded px-3 py-2 text-sm leading-4 dark:text-slate-300 shadow"
+        >
           Save as draft
         </button>
-        <button className="border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-50/40 dark:bg-slate-800 dark:hover:bg-slate-800/70 rounded px-3 py-2 text-sm leading-4 dark:text-slate-300 shadow">
+        <button
+          onClick={handleClick}
+          id="publish"
+          className="border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-50/40 dark:bg-slate-800 dark:hover:bg-slate-800/70 rounded px-3 py-2 text-sm leading-4 dark:text-slate-300 shadow"
+        >
           Publish
         </button>
       </div>
