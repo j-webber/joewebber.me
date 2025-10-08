@@ -1,0 +1,3 @@
+#container .ql-editor {
+  @apply h-72 overflow-auto;
+}

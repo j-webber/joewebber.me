@@ -3,8 +3,8 @@ import { HiLightBulb, HiLogout, HiOutlineLightBulb } from "react-icons/hi";
 import { AiFillGithub } from "react-icons/ai";
 import logo from "../assets/headshot.png";
 import { useLogout } from "../hooks/useAuthMutations";
-import { useAuth } from "../hooks/useAuth";
 import { useAuthContext } from "../contexts/authContext";
+import NavLinks from "./NavLinks";
 
 export default function Header() {
   const location = useLocation();
@@ -38,7 +38,7 @@ export default function Header() {
   };
 
   return (
-    <nav className="w-screen md:mt-10 mt-2 md:mb-2 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md py-6">
+    <nav className="w-screen md:mt-10 mt-2 md:mb-2 sticky top-0 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md py-6 z-10">
       <div className="max-w-2xl mx-auto flex justify-center md:justify-between">
         <Link to="/">
           <div className="hidden md:block w-9 h-9 rounded-full cursor-pointer overflow-hidden border-2 border-slate-900 dark:border-slate-400 hover:shadow-md shadow-md hover:shadow-sky-500">
@@ -50,58 +50,7 @@ export default function Header() {
           </div>
         </Link>
         <div className="flex justify-end items-center space-x-4">
-          <Link
-            to="/"
-            className={`font-semibold text-sm  ${
-              location.pathname === "/"
-                ? "text-sky-500 dark:text-sky-400"
-                : "hover:text-sky-500 dark:hover:text-sky-400"
-            }`}
-          >
-            Home
-          </Link>
-          <Link
-            to="/projects"
-            className={`font-semibold text-sm  ${
-              location.pathname === "/projects"
-                ? "text-sky-500 dark:text-sky-400"
-                : "hover:text-sky-500 dark:hover:text-sky-400"
-            }`}
-          >
-            Projects
-          </Link>
-          {/* <Link
-            to="/"
-            className={`font-semibold text-sm  ${
-              location.pathname === "/articles"
-                ? "text-sky-500 dark:text-sky-400"
-                : "hover:text-sky-500 dark:hover:text-sky-400"
-            }`}
-          >
-            Articles
-          </Link> */}
-          <Link
-            to="/contact"
-            className={`font-semibold text-sm  ${
-              location.pathname === "/contact"
-                ? "text-sky-500 dark:text-sky-400"
-                : "hover:text-sky-500 dark:hover:text-sky-400"
-            }`}
-          >
-            Contact
-          </Link>
-          {user && (
-            <Link
-              to="/new"
-              className={`font-semibold text-sm  ${
-                location.pathname === "/new"
-                  ? "text-sky-500 dark:text-sky-400"
-                  : "hover:text-sky-500 dark:hover:text-sky-400"
-              }`}
-            >
-              New
-            </Link>
-          )}
+          <NavLinks />
           <span>|</span>
           <HiOutlineLightBulb
             onClick={toggleDarkMode}
