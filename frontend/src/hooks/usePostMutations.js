@@ -29,3 +29,30 @@ export function useCreatePost() {
     }
   });
 }
+
+export function useEditPost() {
+  const queryclient = useQueryClient();
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: async ({ postData, postId }) => {
+      const res = await fetch(`/api/admin/posts/${postId}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(postData)
+      });
+
+      if (!res.ok) throw new Error(`Error: ${err}`);
+
+      return res.json();
+    },
+    onSuccess: (post) => {
+      queryclient.setQueryData(["post", { slug: post.slug }], post);
+      const url = post.published
+        ? `/blog/${post.slug}`
+        : `/drafts/${post.slug}`;
+      navigate(url);
+    }
+  });
+}

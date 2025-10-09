@@ -23,6 +23,7 @@ import BlogScreen from "./screens/BlogScreen.jsx";
 import DraftsScreen from "./screens/DraftsScreen.jsx";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import PostScreen from "./screens/PostScreen.jsx";
+import EditScreen from "./screens/EditScreen.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,8 +47,8 @@ const router = createBrowserRouter(
         <Route path="new" element={<NewScreen />} />
         <Route path="drafts" element={<DraftsScreen />} />
         <Route path="drafts/:slug" element={<PostScreen />} />
-        {/* <Route path="drafts/:slug/edit" element={<PostScreen />} /> */}
-        {/* <Route path="blog/:slug/edit" element={<PostScreen />} /> */}
+        <Route path="drafts/:slug/edit" element={<EditScreen />} />
+        <Route path="blog/:slug/edit" element={<EditScreen />} />
       </Route>
     </Route>
   )

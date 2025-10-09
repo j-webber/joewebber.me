@@ -53,7 +53,7 @@ const createPost = asyncHandler(async (req, res) => {
 
 const updatePostById = asyncHandler(async (req, res) => {
   const { postId } = req.params;
-  const { title, content, published } = req.body;
+  const { title, slug, content, published } = req.body;
 
   const updateData = {};
   if (title !== undefined) updateData.title = title;
@@ -67,7 +67,7 @@ const updatePostById = asyncHandler(async (req, res) => {
 
   const updatedPost = await prisma.post.update({
     where: {
-      id: postId
+      id: parseInt(postId)
     },
     data: updateData
   });

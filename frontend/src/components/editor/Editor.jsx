@@ -2,7 +2,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useCallback, useState } from "react";
 import "./editor.css";
-import { useCreatePost } from "../../hooks/usePostMutations";
+import { useCreatePost, useEditPost } from "../../hooks/usePostMutations";
 
 const toolbarOptions = [
   [{ header: [1, 2, false] }],
@@ -16,16 +16,17 @@ const toolbarOptions = [
   ["clean"] // remove formatting button
 ];
 
-export default function Editor() {
+export default function Editor(params) {
+  const { postData } = params;
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [quill, setQuill] = useState();
-
   const createPostMutation = useCreatePost();
+  const editPostMutation = useEditPost();
 
   const wrapperRef = useCallback((wrapper) => {
     if (!wrapper) return;
-
+    //create quill editor
     wrapper.innerHTML = "";
     const editor = document.createElement("div");
     wrapper.append(editor);
@@ -36,6 +37,12 @@ export default function Editor() {
       }
     });
     setQuill(q);
+
+    //if postdata from edit screen is available set title, slug, and contents
+    if (!postData) return;
+    setTitle(postData.title);
+    setSlug(postData.slug);
+    q.setContents(postData.content.ops);
   }, []);
 
   const createSlug = (input) => {
@@ -59,14 +66,30 @@ export default function Editor() {
       return;
     }
 
-    const postData = {
-      title,
-      slug,
-      content: delta,
-      published: e.target.id === "publish"
-    };
+    //if no post data exists then create new post
+    if (!postData) {
+      const postData = {
+        title,
+        slug,
+        content: delta,
+        published: e.target.id === "publish"
+      };
 
-    createPostMutation.mutate(postData);
+      createPostMutation.mutate(postData);
+      return;
+    }
+
+    //if we are editing a post check to see which fields were updated
+    const updatedPostData = {};
+    if (postData.title !== title) updatedPostData.title = title;
+    if (postData.slug !== slug) updatedPostData.slug = slug;
+    if (postData.content !== delta) updatedPostData.content = delta;
+    if ((postData.published !== e.target.id) === "publish")
+      updatedPostData.published = e.target.id === "publish";
+
+    console.log(updatedPostData);
+
+    editPostMutation.mutate({ postData: updatedPostData, postId: postData.id });
   };
 
   return (
