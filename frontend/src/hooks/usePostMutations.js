@@ -21,8 +21,11 @@ export function useCreatePost() {
       return res.json();
     },
     onSuccess: (post) => {
-      queryclient.setQueryData(["post", post.id], post);
-      navigate(`/${post.slug}`);
+      queryclient.setQueryData(["post", { slug: post.slug }], post);
+      const url = post.published
+        ? `/blog/${post.slug}`
+        : `/drafts/${post.slug}`;
+      navigate(url);
     }
   });
 }

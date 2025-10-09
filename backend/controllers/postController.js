@@ -10,12 +10,12 @@ const getPublishedPosts = asyncHandler(async (req, res) => {
   res.json(allPosts);
 });
 
-const getPublishedPostById = asyncHandler(async (req, res) => {
-  const { postId } = req.params;
+const getPublishedPostBySlug = asyncHandler(async (req, res) => {
+  const { postSlug } = req.params;
 
   const post = await prisma.post.findUnique({
     where: {
-      id: postId,
+      slug: postSlug,
       published: true
     }
   });
@@ -26,4 +26,4 @@ const getPublishedPostById = asyncHandler(async (req, res) => {
   res.json(post);
 });
 
-export { getPublishedPosts, getPublishedPostById };
+export { getPublishedPosts, getPublishedPostBySlug };

@@ -1,9 +1,9 @@
 import projects from "../data/projectData";
 
 export default function ProjectList() {
-  const listData = projects.map((project) => {
+  const listData = projects.map((project, i) => {
     return (
-      <li>
+      <li key={i}>
         <p>
           [{project.date}]{" "}
           {project.hasUrl ? (

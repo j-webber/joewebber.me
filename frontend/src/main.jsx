@@ -19,6 +19,10 @@ import { AuthProvider } from "./contexts/authContext.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import NewScreen from "./screens/NewScreen.jsx";
+import BlogScreen from "./screens/BlogScreen.jsx";
+import DraftsScreen from "./screens/DraftsScreen.jsx";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import PostScreen from "./screens/PostScreen.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,13 +35,19 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
-      <Route index={true} path="/" element={<HomeScreen />} />
-      <Route path="/projects" element={<ProjectsScreen />} />
-      <Route path="/contact" element={<ContactScreen />} />
+      <Route index={true} element={<HomeScreen />} />
+      <Route path="projects" element={<ProjectsScreen />} />
+      <Route path="contact" element={<ContactScreen />} />
       <Route path="*" element={<NotFoundScreen />} />
-      <Route path="/login" element={<LoginScreen />} />
+      <Route path="login" element={<LoginScreen />} />
+      <Route path="blog" element={<BlogScreen />} />
+      <Route path="blog/:slug" element={<PostScreen />} />
       <Route element={<ProtectedRoute />}>
-        <Route path="/new" element={<NewScreen />} />
+        <Route path="new" element={<NewScreen />} />
+        <Route path="drafts" element={<DraftsScreen />} />
+        <Route path="drafts/:slug" element={<PostScreen />} />
+        {/* <Route path="drafts/:slug/edit" element={<PostScreen />} /> */}
+        {/* <Route path="blog/:slug/edit" element={<PostScreen />} /> */}
       </Route>
     </Route>
   )
@@ -50,6 +60,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <AuthProvider>
           <RouterProvider router={router} />
         </AuthProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </AnalyticsProvider>
   </React.StrictMode>

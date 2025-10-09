@@ -3,18 +3,20 @@ import prisma from "../lib/db.js";
 import { CustomNotFoundError } from "../errors/CustomNotFoundError.js";
 import { CustomBadRequestError } from "../errors/CustomBadRequestError.js";
 
-const getAllPosts = asyncHandler(async (req, res) => {
-  const allPosts = await prisma.post.findMany();
+const getDraftPosts = asyncHandler(async (req, res) => {
+  const allPosts = await prisma.post.findMany({
+    where: { published: false }
+  });
 
   res.json(allPosts);
 });
 
-const getPostById = asyncHandler(async (req, res) => {
-  const { postId } = req.params;
+const getPostBySlug = asyncHandler(async (req, res) => {
+  const { postSlug } = req.params;
 
   const post = await prisma.post.findUnique({
     where: {
-      id: postId
+      slug: postSlug
     }
   });
 
@@ -83,4 +85,10 @@ const deletePostById = asyncHandler(async (req, res) => {
   res.status(204).send();
 });
 
-export { getAllPosts, getPostById, createPost, updatePostById, deletePostById };
+export {
+  getDraftPosts,
+  getPostBySlug,
+  createPost,
+  updatePostById,
+  deletePostById
+};

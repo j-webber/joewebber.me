@@ -23,6 +23,11 @@ const links = [
     url: "/new",
     title: "New",
     protected: true
+  },
+  {
+    url: "/drafts",
+    title: "Drafts",
+    protected: true
   }
 ];
 

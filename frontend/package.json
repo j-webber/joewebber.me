@@ -12,8 +12,10 @@
   "dependencies": {
     "@analytics/simple-analytics": "^0.4.0",
     "@tanstack/react-query": "^5.90.2",
+    "@tanstack/react-query-devtools": "^5.90.2",
     "analytics": "^0.8.9",
     "quill": "^2.0.3",
+    "quill-delta-to-html": "^0.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
