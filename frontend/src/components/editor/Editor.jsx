@@ -3,6 +3,8 @@ import "quill/dist/quill.snow.css";
 import { useCallback, useState } from "react";
 import "./editor.css";
 import { useCreatePost, useEditPost } from "../../hooks/usePostMutations";
+import _ from "lodash";
+import { useNavigate } from "react-router-dom";
 
 const toolbarOptions = [
   [{ header: [1, 2, false] }],
@@ -23,6 +25,7 @@ export default function Editor(params) {
   const [quill, setQuill] = useState();
   const createPostMutation = useCreatePost();
   const editPostMutation = useEditPost();
+  const navigate = useNavigate();
 
   const wrapperRef = useCallback((wrapper) => {
     if (!wrapper) return;
@@ -83,11 +86,16 @@ export default function Editor(params) {
     const updatedPostData = {};
     if (postData.title !== title) updatedPostData.title = title;
     if (postData.slug !== slug) updatedPostData.slug = slug;
-    if (postData.content !== delta) updatedPostData.content = delta;
-    if ((postData.published !== e.target.id) === "publish")
+    if (!_.isEqual(postData.content.ops, delta.ops))
+      updatedPostData.content = delta;
+    if (postData.published !== (e.target.id === "publish"))
       updatedPostData.published = e.target.id === "publish";
 
-    console.log(updatedPostData);
+    console.log("updated post data: ", updatedPostData);
+
+    if (Object.keys(updatedPostData).length === 0) {
+      return navigate("..", { relative: "path" });
+    }
 
     editPostMutation.mutate({ postData: updatedPostData, postId: postData.id });
   };

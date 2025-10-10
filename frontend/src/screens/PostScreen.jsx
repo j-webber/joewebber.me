@@ -40,8 +40,6 @@ export default function PostScreen(params) {
 
     const converter = new QuillDeltaToHtmlConverter(post.content.ops, config);
 
-    console.log(typeof converter.convert());
-
     document.getElementById("post-content").setHTMLUnsafe(converter.convert());
   }, [post]);
 
